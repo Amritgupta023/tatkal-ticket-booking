@@ -8,16 +8,21 @@ btn.addEventListener('click', () => {
     chrome.tabs.sendMessage(
       tabId,
       {
-        type: 'GET_LOCAL_STORAGE_KEY',
-        key: 'nget-spa.b-m-k'
+        type: 'FIND_TRAIN_FORM_GROUP',
+        trainNumber: '22447'
       },
       (response) => {
         if (chrome.runtime.lastError) {
-          output.textContent = 'Unable to access localStorage on this page';
+          output.textContent = 'Unable to access page DOM';
           return;
         }
 
-        output.textContent = response?.value ?? 'Key not found';
+        if (response?.found) {
+          output.textContent =
+            `✅ Train found: ${response.trainText}\nForm-group detected`;
+        } else {
+          output.textContent = '❌ Train 22447 not found';
+        }
       }
     );
   });
