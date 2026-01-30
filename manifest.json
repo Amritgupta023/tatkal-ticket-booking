@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "My Side Panel Extension",
+  "version": "1.0",
+  "description": "Right-side panel like sider",
+  "permissions": ["sidePanel"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open Side Panel"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  }
+}
